@@ -1,8 +1,14 @@
 const buttonOperators = document.querySelectorAll(".buttonOperator");
 const buttons = document.querySelectorAll(".button");
 const buttonEnter = document.querySelector(".buttonEnter");
+const decimal = document.querySelector(".decimal")
+const resultDefault = document.getElementById("result")
 //Getting links to the HTML button tags to a variable
 
+let prevNum = 0
+let operator = ""
+let currentNum = 0
+//setting base empty variables
 
 buttonOperators.forEach(button => {
     button.addEventListener("click", (event) => {
@@ -30,11 +36,11 @@ buttonEnter.addEventListener("click", (event) => {
 //cals the calc function to do the calculations with inputs provided
 //changes the result the that of currentNum
 
-let prevNum = 0
-let operator = ""
-let currentNum = 0
-
-const resultDefault = document.getElementById("result")
+decimal.addEventListener("click", (event) => {
+    let decimalVal = event.target.value
+    inputDecimal(decimalVal)
+});
+//same process as above for the buttons / number keys
 
 const updateResult = (buttonVal) => {
     multiNumber(buttonVal)
@@ -92,14 +98,7 @@ const clear = () => {
 //basically the same logic as the calc funciton, if the operator is equal to C then clear all stored variables
 //and set the displayed number to 0 again
 
-const decimal = document.querySelector(".decimal")
-
-decimal.addEventListener("click", (event) => {
-    let decimalVal = event.target.value
-    inputDecimal(decimalVal)
-});
-
-inputDecimal = (decimalVal) => {
+const inputDecimal = (decimalVal) => {
         currentNum += decimalVal
         document.getElementById("result").textContent = currentNum
     }
